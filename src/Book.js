@@ -19,7 +19,7 @@ class Book extends Component {
                     <BookShelfChanger currentShelf={book.shelf !== undefined ? book.shelf : ''} onShelfChange={this.props.onShelfChange} book={book} />
                 </div>
                 <BookTitle title={book.title} />
-                <BookAuthors authors={book.authors} />
+                <BookAuthors authors={book.authors !== undefined && book.authors.length >0 ? book.authors : []} />
             </div>
         )
     }
