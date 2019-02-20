@@ -1,3 +1,9 @@
+# Comments from Talha
+I have forked the github starter repository and worked on the project.
+After cloning the repo, you only need to do the following to run the project
+* install all project dependencies with `npm install`
+* run the project with `npm start`
+
 # MyReads Project
 
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
