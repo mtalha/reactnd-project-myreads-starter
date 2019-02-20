@@ -12,10 +12,11 @@ class Book extends Component {
     };
     render() {
         const {book} = this.props;
+        let thumbnail = book.imageLinks !== undefined && book.imageLinks.thumbnail!== undefined ? book.imageLinks.thumbnail : '' 
         return (
             <div className="book">
                 <div className="book-top">
-                    <BookCover width={128} height={193} thumbnail={book.imageLinks.thumbnail} />
+                    <BookCover width={128} height={193} thumbnail={thumbnail} />
                     <BookShelfChanger currentShelf={book.shelf !== undefined ? book.shelf : ''} onShelfChange={this.props.onShelfChange} book={book} />
                 </div>
                 <BookTitle title={book.title} />

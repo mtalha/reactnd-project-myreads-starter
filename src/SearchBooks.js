@@ -16,8 +16,9 @@ class SearchBooks extends Component {
     }
 
     updateQuery = (query) => {
-        this.setState(() => ({
-            query: query
+        this.setState((currentState) => ({
+            query: query,
+            searchResults: query ? currentState.searchResults : []
         }))
         
         if (query) {
@@ -39,16 +40,13 @@ class SearchBooks extends Component {
                 }))
             })    
         } else {
+            // just for clearing older results
             this.setState(() => ({
                 searchResults: []
             }))
         }
         
         
-    };
-
-    clearQuery = () => {
-        this.updateQuery('')
     };
 
     render() {
@@ -86,7 +84,7 @@ class SearchBooks extends Component {
                             </li>
                         ))
                         }
-                        {searchResults===undefined && searchResults.length < 1 &&  
+                        {(searchResults === undefined || searchResults.length < 1) &&  
                                 <li >
                                     <p>No books found</p>
                                 </li>
