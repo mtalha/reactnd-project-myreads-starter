@@ -39,3 +39,7 @@ User can move a book from `none` to any of the three shelved `Currently Reading`
 On the search page, the `none` shelf action has no effect. 
 
 The search page also has a `back button` on the left of search input field, clicking on that takes the user back to the MyReads home page.
+
+## Invalid Links Handling
+The project also handles the invalid links entered directly in the browser tab's address bar.
+So if a user enters something like `http://localhost:3000/blablaba` they will see a 404 not found page, rather than a blank page.
