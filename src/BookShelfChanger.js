@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * TODO: this requires state management I guess
+ * Component to change the book shelf.
+ * Wrapper around an HTML select tag for shelf menu.
  */
 class BookShelfChanger extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            selectedShelf: props.currentShelf,
-            book: props.book
-        }
-    }
     static propTypes = {
         currentShelf: PropTypes.string.isRequired,
         onShelfChange: PropTypes.func.isRequired,
@@ -20,7 +14,6 @@ class BookShelfChanger extends Component {
     }
 
     handleChange = event => {
-        this.setState({ selectedShelf: event.target.value })
         var bookForShelfChange = this.props.book
         bookForShelfChange.shelf = event.target.value
         this.props.onShelfChange(bookForShelfChange)
@@ -29,7 +22,7 @@ class BookShelfChanger extends Component {
     render() {
         return (
             <div className="book-shelf-changer">
-                <select defaultValue={this.state.selectedShelf} onChange={this.handleChange}>
+                <select defaultValue={this.props.currentShelf} onChange={this.handleChange}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>

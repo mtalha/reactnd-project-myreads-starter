@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function BookAuthors (props) {
     return (
-        <div className="book-authors">{props.authors !== undefined && props.authors.length> 0 ? props.authors[0] : ''}</div>        
+        <div className="book-authors">{props.authors !== undefined && props.authors.length> 0 ? props.authors.join(", ") : ''}</div>        
     )
 }
 

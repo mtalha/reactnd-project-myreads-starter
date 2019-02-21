@@ -1,98 +1,41 @@
-# Comments from Talha
-I have forked the github starter repository and worked on the project.
-After cloning the repo, you only need to do the following to run the project
+# MyReads - React Nano-Degree First Project
+
+I forked the github starter repository and worked on the project on my local machine.
+I have checked in all the code in the `master` branch of my forked repo. 
+
+## Instructions for how to compile & run the project
+After cloning the git reposioty or downloading the zip file, please open the terminal and go into the project root repositoy i.e. you should be in `reactnd-project-myreads-starter` directory
+
+Step 1. Run the following command to add all the required dependencies
 * install all project dependencies with `npm install`
+Step 2. When the Step 1. is complete (it should complete without any errors), run the following command to open the review page in your default browser window
 * run the project with `npm start`
+When Step 2. is completed, you will see the `http://localhost:3000/` url in your browser tab.
 
-# MyReads Project
+# MyReads Project - Description 
+MyReads is the first project in Udacity React Nano-Degree program.
 
-This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
+This projects displays a list of books catergorized in three shelved, namely:
+* Currently Reading
+* Want to Read
+* Read
 
-Of course, you are free to start this project from scratch if you wish! Just be sure to use [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+Each book is displayed with a thumbnail image, under which the book's title and author name(s) are mentioed. A book can have more than one authors.
 
-## TL;DR
+If there are more than one authors, their names are shown as comma separated. 
 
-To get started developing right away:
+There are cases when a book cannot have a thumbnail, in that case only the title and author name(s) will be shown.
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+Each book is assigned to a shelf and there is a control with each book with which the user can move the book to another shelf. The Shelf Changer control also has an option `none`, choosing which causes the book to disappear from the shelf. 
 
-## What You're Getting
-```bash
-├── CONTRIBUTING.md
-├── README.md - This file.
-├── SEARCH_TERMS.md # The whitelisted short collection of available search terms for you to use with your app.
-├── package.json # npm package manager file. It's unlikely that you'll need to modify this.
-├── public
-│   ├── favicon.ico # React Icon, You may change if you wish.
-│   └── index.html # DO NOT MODIFY
-└── src
-    ├── App.css # Styles for your app. Feel free to customize this as you desire.
-    ├── App.js # This is the root of your app. Contains static HTML right now.
-    ├── App.test.js # Used for testing. Provided with Create React App. Testing is encouraged, but not required.
-    ├── BooksAPI.js # A JavaScript API for the provided Udacity backend. Instructions for the methods are below.
-    ├── icons # Helpful images for your app. Use at your discretion.
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+There is also a search functionality. The Search buttin is located at the bottom right of the screen, clicking on that open the search page with the url `http://localhost:3000/search` in your browswer tab. As the user starts typing in the search input field, the BooksAPI provided in started code of the backend server is called and it returns at max 20 books against the search results. 
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+If a book found in search result is already in user's shelf, the book's shelf menu shows the current shelf of the book in which the book resides in user's shelf books. 
 
-## Backend Server
+The searched books, if not in any shelf, are marked as `none` in their shelf control. 
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+User can move a book from `none` to any of the three shelved `Currently Reading`, `Want to Read` & `Read`. After this action, whn the user goes back to the project home, the book will be shown in the moved shelf. 
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
+On the search page, the `none` shelf action has no effect. 
 
-### `getAll`
-
-Method Signature:
-
-```js
-getAll()
-```
-
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
-
-### `update`
-
-Method Signature:
-
-```js
-update(book, shelf)
-```
-
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
-
-### `search`
-
-Method Signature:
-
-```js
-search(query)
-```
-
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
-
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
-
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+The search page also has a `back button` on the left of search input field, clicking on that takes the user back to the MyReads home page.

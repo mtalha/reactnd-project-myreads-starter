@@ -3,7 +3,10 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BooksList from './BooksList';
 import SearchBooks from './SearchBooks';
+import NotFound from './NotFound';
 import { Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+
 
 class BooksApp extends React.Component {
   state = {
@@ -21,29 +24,29 @@ class BooksApp extends React.Component {
 
   handleBookShelfChange = (bookForShelfChange) => {
     var shuffledBooks = this.state.books
-    var shuffledBook = undefined
-    for (let pos in shuffledBooks) {
+    let foundBookInShelf = false;
+    for (var pos in shuffledBooks) {
       if (shuffledBooks[pos].id === bookForShelfChange.id) {
-        shuffledBooks[pos].shelf = bookForShelfChange.shelf
-        shuffledBook = shuffledBooks[pos]
+        foundBookInShelf = true
         break
       }
     }
-    
-    if (shuffledBook === undefined) {
-      shuffledBooks.push(bookForShelfChange)
-    }
-
-    this.setState({
-      books: shuffledBooks
+    this.setState((currentState) => {
+      if (foundBookInShelf) {
+        currentState.books[pos].shelf = bookForShelfChange.shelf
+      } else {
+        currentState.books.push(bookForShelfChange)
+      }
+      return { books: currentState.books }
     })
-
     BooksAPI.update(bookForShelfChange, bookForShelfChange.shelf)
   }
 
   render() {
     return (
       <div className="app">
+
+      <Switch>
         <Route exact path='/' render={() => (
           <BooksList books={this.state.books} onShelfChange={this.handleBookShelfChange} />
         )} />
@@ -51,6 +54,10 @@ class BooksApp extends React.Component {
         <Route path='/search' render={() => (
           <SearchBooks shelfBooks={this.state.books} onShelfChange={this.handleBookShelfChange} />
         )} />
+
+        <Route component={NotFound} />
+        )} />
+      </Switch>
       </div>
     )
   }

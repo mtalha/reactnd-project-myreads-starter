@@ -17,36 +17,40 @@ class SearchBooks extends Component {
 
     updateQuery = (query) => {
         this.setState((currentState) => ({
-            query: query,
-            searchResults: query ? currentState.searchResults : []
+            query: query
         }))
         
         if (query) {
             BooksAPI.search(query)
-            .then((books) => {
-                if (books!== undefined && books.length >= 0) {
-                    for (var searchedBook of books) {
-                        searchedBook.shelf = 'none'
-                        for (const shelfBook of this.props.shelfBooks) {
-                            if (searchedBook.id === shelfBook.id) {
-                                searchedBook.shelf = shelfBook.shelf
-                                break
+                .then((books) => {
+                    let foundBooks = false;
+                    if (books!== undefined && books.length >= 0) {
+                        foundBooks = true;
+                        for (var searchedBook of books) {
+                            searchedBook.shelf = 'none'
+                            for (const shelfBook of this.props.shelfBooks) {
+                                if (searchedBook.id === shelfBook.id) {
+                                    searchedBook.shelf = shelfBook.shelf
+                                    break
+                                }
                             }
                         }
                     }
-                }
-                this.setState(() => ({
-                    searchResults: books
-                }))
-            })    
+                    this.setState(() => {
+                        if (foundBooks ) {
+                            return {searchResults: books}
+                        } else {
+                            return {searchResults: []}
+                        }
+                    })
+                    
+                })    
         } else {
             // just for clearing older results
             this.setState(() => ({
                 searchResults: []
             }))
         }
-        
-        
     };
 
     render() {
