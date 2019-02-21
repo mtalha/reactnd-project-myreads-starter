@@ -7,10 +7,12 @@ I have checked in all the code in the `master` branch of my forked repo.
 After cloning the git reposioty or downloading the zip file, please open the terminal and go into the project root repository i.e. you should be in `reactnd-project-myreads-starter` directory
 
 Step 1. 
-    * install all project dependencies with `npm install`
+
+* install all project dependencies with `npm install`
 
 Step 2. When the Step 1. is complete (it should complete without any errors), run the following command to open the review page in your default browser window
-    * run the project with `npm start`
+
+* run the project with `npm start`
 
 When Step 2. is completed, you will see the `http://localhost:3000/` url in your browser tab.
 
